@@ -15,7 +15,7 @@
 	#endif
 #elif defined (__linux__)
 	#define BGE_SYS_LINUX
-#elif defined (__apple__)
+#elif defined (__APPLE__)
 	#define BGE_SYS_MACOS
 #endif
 
