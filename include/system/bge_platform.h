@@ -11,17 +11,19 @@
 #ifdef _WIN32
 	#define BGE_SYS_WINDOWS
 	#ifndef NOMINMAX
-	#define NOMINMAX
+		#define NOMINMAX
 	#endif
 #elif defined (__linux__)
 	#define BGE_SYS_LINUX
 #elif defined (__APPLE__)
 	#define BGE_SYS_MACOS
+#else
+	#error Your system is not supported by BGE
 #endif
 
 #ifndef BGE_STATIC_BUILD
 	#ifdef BGE_SYS_WINDOWS
-		#ifdef BGE_NONCLIENT_BUILD
+		#if defined (BGE_NONCLIENT_BUILD)
 			#define BGE_API __declspec(dllexport)
 		#else
 			#define BGE_API __declspec(dllimport)
