@@ -23,10 +23,14 @@
 
 #ifndef BGE_STATIC_BUILD
 	#ifdef BGE_SYS_WINDOWS
-		#if defined (BGE_NONCLIENT_BUILD)
-			#define BGE_API __declspec(dllexport)
+		#ifdef BGE_NONCLIENT_BUILD
+			#ifndef BGE_API
+				#define BGE_API __declspec(dllexport)
+			#endif
 		#else
-			#define BGE_API __declspec(dllimport)
+			#ifndef BGE_API
+				#define BGE_API __declspec(dllimport)
+			#endif
 		#endif
 
 		// Visual C++ compiler warning C4251 suppression
@@ -41,7 +45,8 @@
 		#endif
 	#endif
 #else
-	#define BGE_API BGE_API
+	#define BGE_API
+	#define BGE_API
 #endif
 
 #endif	// ifndef BGE_PLATFORM_H
